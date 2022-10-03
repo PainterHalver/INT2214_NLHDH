@@ -18,10 +18,19 @@ const fcfs = (processes) => {
 
     let current_time = 0, sum_tg_cho = 0, sum_tg_hoanthanh = 0;
     const data_table = [];
+    const run_table = [{ "Thời điểm": "------", "Tiến trình đang chạy": "------" }];
 
     for (let i = 0; i < processes.length; i++) {
         const process = processes[i];
+
         if (current_time <= process.tg_den) {
+            // In ra khoảng không có Process nào chạy
+            for (let i = current_time; i < process.tg_den; i++) {
+                run_table.push({ "Thời điểm": i, "Tiến trình đang chạy": -1 });
+            }
+            if (run_table[run_table.length - 1] && run_table[run_table.length - 1]["Thời điểm"] !== "------") {
+                run_table.push({ "Thời điểm": "------", "Tiến trình đang chạy": "------" });
+            }
             current_time = process.tg_den;
         }
         const tg_cho = current_time - process.tg_den;
@@ -29,6 +38,12 @@ const fcfs = (processes) => {
 
         sum_tg_cho += tg_cho;
         sum_tg_hoanthanh += tg_hoanthanh;
+
+        // In ra khoảng thời gian Process chạy
+        for (let i = current_time; i < current_time + process.tg_chay; i++) {
+            run_table.push({ "Thời điểm": i, "Tiến trình đang chạy": process.number });
+        }
+        run_table.push({ "Thời điểm": "------", "Tiến trình đang chạy": "------" });
 
         current_time += process.tg_chay;
 
@@ -40,6 +55,9 @@ const fcfs = (processes) => {
         }
         data_table.push(process_stats);
     }
+
+    console.log(FG_CYAN + "Biểu đồ Gantt (nhưng theo chiều dọc): " + RESET);
+    console.table(run_table)
 
     console.log(FG_CYAN + "Kết quả: " + RESET);
     console.table(data_table);
