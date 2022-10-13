@@ -13,12 +13,12 @@ def lru(frame_size, reference_pages, should_print=True):
             if len(frame) < frame_size:
                 frame.append(page_number)
             else:
-                candidate = list(frame)
+                candidates = list(frame)
                 for j in range(i - 1, -1, -1):
-                    if reference_pages[j] in candidate:
-                        candidate.remove(reference_pages[j])
-                    if len(candidate) == 1:
-                        frame[frame.index(candidate[0])] = page_number
+                    if reference_pages[j] in candidates:
+                        candidates.remove(reference_pages[j])
+                    if len(candidates) == 1:
+                        frame[frame.index(candidates[0])] = page_number
                         break
             if should_print:
                 print(FG_YELLOW + f"Đọc {page_number}, page fault --> {frame}" + RESET)
