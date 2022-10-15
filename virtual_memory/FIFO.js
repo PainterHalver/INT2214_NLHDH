@@ -22,15 +22,14 @@ const fifo = (frame_size, reference_list, should_log = true) => {
 }
 
 const main = () => {
-    const reference_list = [0, 2, 1, 6, 4, 0, 1, 0, 3, 1, 2, 1]
-    const frame_size = 4;
-
+    const reference_list = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
+    const frame_size = 3;
     fifo(frame_size, reference_list)
 
-    // for (let i = 1; i <= 10; i++) {
-    //     const [_, count] = fifo(i, reference_list, false);
-    //     console.log(`Frame size = ${i}, page fault = ${count}`);
-    // }
+    for (let i = 1; i <= 10; i++) {
+        const [_, count] = fifo(i, reference_list, false);
+        console.log(`Frame size = ${i}, page fault = ${count}`);
+    }
 }
 
 main()

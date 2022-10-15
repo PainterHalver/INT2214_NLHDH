@@ -56,10 +56,10 @@ def lfu(frame_size, reference_pages, should_print=True):
     return page_fault_count
 
 
-frame_size = 4
-reference_pages = [1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6]
+frame_size = 3
+reference_pages = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
 lfu(frame_size, reference_pages)
 
-# for i in range(1, 10 + 1):
-#     count = lfu(i, reference_pages, should_print=False)
-#     print(FG_YELLOW + f"Frame size: {i}, page fault count: {count}" + RESET)
+for i in range(1, 10 + 1):
+    count = lfu(i, reference_pages, should_print=False)
+    print(FG_YELLOW + f"Frame size: {i}, page fault count: {count}" + RESET)

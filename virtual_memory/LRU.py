@@ -32,9 +32,9 @@ def lru(frame_size, reference_pages, should_print=True):
 
 
 frame_size = 3
-reference_pages = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 1, 2, 0]
+reference_pages = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
 lru(frame_size, reference_pages)
 
-# for i in range(1, 10 + 1):
-#     count = lru(i, reference_pages, should_print=False)
-#     print(FG_YELLOW + f"Frame size: {i}, page fault count: {count}" + RESET)
+for i in range(1, 10 + 1):
+    count = lru(i, reference_pages, should_print=False)
+    print(FG_YELLOW + f"Frame size: {i}, page fault count: {count}" + RESET)
