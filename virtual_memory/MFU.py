@@ -4,7 +4,7 @@ FG_CYAN = "\x1b[36m"
 FG_RED = "\x1b[31m"
 
 
-def lfu(frame_size, reference_pages, should_print=True):
+def mfu(frame_size, reference_pages, should_print=True):
     frame = []
     page_fault_count = 0
     frequency = {}
@@ -58,8 +58,8 @@ def lfu(frame_size, reference_pages, should_print=True):
 
 frame_size = 3
 reference_pages = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
-lfu(frame_size, reference_pages)
+mfu(frame_size, reference_pages)
 
 for i in range(1, 10 + 1):
-    count = lfu(i, reference_pages, should_print=False)
+    count = mfu(i, reference_pages, should_print=False)
     print(FG_YELLOW + f"Frame size: {i}, page fault count: {count}" + RESET)
